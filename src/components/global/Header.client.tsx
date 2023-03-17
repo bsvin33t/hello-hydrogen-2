@@ -154,7 +154,7 @@ function DesktopHeader({
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState<
     Record<
-      'products' | 'pages' | 'articles',
+      'products' | 'pages' | 'articles' | 'queries',
       {
         id: string;
         title: string;
@@ -166,6 +166,7 @@ function DesktopHeader({
     products: [],
     pages: [],
     articles: [],
+    queries: [],
   });
   const [inputFocused, setInputFocused] = useState(false);
 
@@ -180,6 +181,7 @@ function DesktopHeader({
           products: [],
           articles: [],
           pages: [],
+          queries: [],
         });
         return;
       }
@@ -219,6 +221,13 @@ function DesktopHeader({
                 title: page.title,
                 image: undefined,
                 url: `/pages/${page.handle}`,
+              };
+            }),
+            queries: data.predictiveSearch.queries.map((query: any) => {
+              return {
+                title: query,
+                image: undefined,
+                url: `/search?q=${encodeURIComponent(query)}`,
               };
             }),
           });
@@ -312,6 +321,7 @@ function DesktopHeader({
                           products: 'Products',
                           articles: 'Articles',
                           pages: 'Pages',
+                          queries: 'Queries',
                         }[key];
 
                         return (

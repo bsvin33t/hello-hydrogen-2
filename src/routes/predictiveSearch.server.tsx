@@ -36,7 +36,11 @@ const PREDICTIVE_SEARCH_QUERY = gql`
     $country: CountryCode
     $language: LanguageCode
   ) @inContext(country: $country, language: $language) {
-    predictiveSearch(limit: 4, query: $query, types: [PRODUCT, PAGE, ARTICLE]) {
+    predictiveSearch(
+      limit: 10
+      query: $query
+      types: [PRODUCT, PAGE, ARTICLE, QUERY]
+    ) {
       products {
         id
         title
@@ -69,6 +73,7 @@ const PREDICTIVE_SEARCH_QUERY = gql`
           height
         }
       }
+      queries
     }
   }
 `;
