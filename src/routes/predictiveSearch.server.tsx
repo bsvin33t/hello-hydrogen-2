@@ -73,7 +73,10 @@ const PREDICTIVE_SEARCH_QUERY = gql`
           height
         }
       }
-      queries
+      queries {
+        text
+        styledText
+      }
     }
   }
 `;

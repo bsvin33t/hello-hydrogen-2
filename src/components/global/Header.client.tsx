@@ -225,9 +225,9 @@ function DesktopHeader({
             }),
             queries: data.predictiveSearch.queries.map((query: any) => {
               return {
-                title: query,
+                title: query.text,
                 image: undefined,
-                url: `/search?q=${encodeURIComponent(query)}`,
+                url: `/search?q=${encodeURIComponent(query.text)}`,
               };
             }),
           });
