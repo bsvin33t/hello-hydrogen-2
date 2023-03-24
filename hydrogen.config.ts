@@ -2,12 +2,12 @@ import {defineConfig, CookieSessionStorage} from '@shopify/hydrogen/config';
 
 export default defineConfig({
   shopify: {
-    defaultCountryCode: 'CA',
+    defaultCountryCode: 'DE',
     defaultLanguageCode: 'EN',
-    storeDomain: Oxygen.env.PUBLIC_STORE_DOMAIN || 'tatsuyas-store.myshopify.com',
-    storefrontToken: Oxygen.env.PUBLIC_STOREFRONT_API_TOKEN || '<PUBLIC_STOREFRONT_API_TOKEN>',
+    storeDomain: Oxygen.env.PUBLIC_STORE_DOMAIN,
+    storefrontToken: Oxygen.env.PUBLIC_STOREFRONT_API_TOKEN,
     privateStorefrontToken: Oxygen.env.PRIVATE_STOREFRONT_API_TOKEN,
-    storefrontApiVersion: 'unstable',
+    storefrontApiVersion: '2022-07',
     storefrontId: Oxygen.env.PUBLIC_STOREFRONT_ID,
   },
   session: CookieSessionStorage('__session', {
