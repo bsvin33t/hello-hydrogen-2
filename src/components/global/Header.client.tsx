@@ -201,33 +201,48 @@ function DesktopHeader({
           // TODO: type this
           const {data} = await response.json();
 
+          const getQueryParams = (resource: any) => {
+            return resource.trackingParameters
+              ? `?${resource.trackingParameters}`
+              : '';
+          };
+
           setSearchResults({
             products: data.predictiveSearch.products.map((product: any) => {
               return {
                 title: product.title,
                 image: product.variants?.nodes?.[0]?.image,
-                url: `/products/${product.handle}`,
+                url: `/products/${product.handle}${getQueryParams(product)}`,
               };
             }),
             articles: data.predictiveSearch.articles.map((article: any) => {
               return {
                 title: article.title,
                 image: article.image,
-                url: `/journal/${article.handle}`,
+                url: `/journal/${article.handle}${getQueryParams(article)}`,
               };
             }),
             pages: data.predictiveSearch.pages.map((page: any) => {
               return {
                 title: page.title,
                 image: undefined,
-                url: `/pages/${page.handle}`,
+                url: `/pages/${page.handle}${getQueryParams(page)}`,
               };
             }),
             queries: data.predictiveSearch.queries.map((query: any) => {
+              let queryParams = getQueryParams(query);
+              if (queryParams === '') {
+                queryParams = `?q=${encodeURIComponent(query.text)}`;
+              } else {
+                queryParams = `${queryParams}&q=${encodeURIComponent(
+                  query.text,
+                )}`;
+              }
               return {
                 title: query.text,
                 image: undefined,
-                url: `/search?q=${encodeURIComponent(query.text)}`,
+                // url: `/search?q=${encodeURIComponent(query.text)}`,
+                url: `/search${queryParams}`,
               };
             }),
           });

@@ -43,6 +43,7 @@ export const ARTICLE_CARD_FRAGMENT = gql`
     title
     publishedAt
     handle
+    trackingParameters
     image {
       url
       altText
@@ -59,6 +60,7 @@ export const PAGE_CARD_FRAGMENT = gql`
     title
     createdAt
     handle
+    trackingParameters
     __typename
   }
 `;
@@ -69,6 +71,7 @@ export const PRODUCT_CARD_FRAGMENT = gql`
     title
     publishedAt
     handle
+    trackingParameters
     variants(first: 1) {
       nodes {
         id
